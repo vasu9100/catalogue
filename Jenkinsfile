@@ -21,11 +21,7 @@ pipeline {
 
     stages {
         stage('clone') {
-            when {
-                expression {
-                    params.action == 'clone'
-                }
-            }
+            
             steps { // Changed 'script' to 'steps'
                 script {
                     def packagejson = readJSON file: 'package.json'
@@ -37,12 +33,6 @@ pipeline {
         }
 
         stage('build'){
-            when {
-                expression {
-                    params.action = 'build'
-                }
-            }
-            
             sh """
                 npm install
             """
