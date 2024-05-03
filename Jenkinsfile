@@ -16,7 +16,7 @@ pipeline {
     }
 
     environment {
-        Packageversion = '' 
+        packageversion = '' 
     }
 
     stages {
@@ -29,9 +29,9 @@ pipeline {
             steps { // Changed 'script' to 'steps'
                 script {
                     def packagejson = readJSON file: 'package.json'
-                    Packageversion = packagejson.version
+                    packageversion = packagejson.version
 
-                    echo "app version: ${env.Packageversion}" // Corrected variable reference syntax
+                    echo "app version: $packageversion" // Corrected variable reference syntax
                 }
             }
         }
