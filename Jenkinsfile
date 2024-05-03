@@ -16,11 +16,16 @@ pipeline {
     }
 
     environment {
-        Packageversion = '' // Changed 'environments' to 'environment', and removed unnecessary space
+        Packageversion = '' 
     }
 
     stages {
         stage('clone') {
+            when {
+                expression {
+                    params.action == 'clone'
+                }
+            }
             steps { // Changed 'script' to 'steps'
                 script {
                     env.Packageversion = readJSON(file: 'package.json').version
