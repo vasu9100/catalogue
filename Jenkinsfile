@@ -30,10 +30,12 @@ pipeline {
             }
         }
 
-        stage('build'){
-            sh """
-                npm install
-            """
+        stage('build') {
+            steps {
+                sh """
+                    npm install
+                """
+            }
     
         }
     }
