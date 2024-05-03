@@ -11,9 +11,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') // Corrected syntax for timeout
     }
 
-    parameters {
-        choice(name: 'action', choices: ['clone', 'build']) // Added comma after 'action'
-    }
+    
 
     environment {
         packageversion = '' 
@@ -36,5 +34,7 @@ pipeline {
             sh """
                 npm install
             """
+    
+        }
     }
 }
