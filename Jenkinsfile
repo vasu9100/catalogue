@@ -35,5 +35,16 @@ pipeline {
                 }
             }
         }
+
+        stage('build'){
+            when {
+                expression {
+                    params.action = 'build'
+                }
+            }
+            
+            sh """
+                npm install
+            """
     }
 }
