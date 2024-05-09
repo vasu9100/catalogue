@@ -30,13 +30,24 @@ pipeline {
             }
         }
 
-        stage('build') {
+        stage('npm') {
             steps {
                 sh """
                     npm install
                 """
             }
     
+        }
+
+        stage {
+            steps {
+                sh """
+                    ls -la
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
+
+                """
+            }
         }
     }
 }
