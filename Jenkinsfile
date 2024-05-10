@@ -39,7 +39,7 @@ pipeline {
     
         }
 
-        stage {
+        stage('zipping') {
             steps {
                 sh """
                     ls -la
