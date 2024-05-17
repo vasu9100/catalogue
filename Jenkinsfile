@@ -18,9 +18,9 @@ pipeline {
         nexusURL = '44.192.61.27:8081'
     }
 
-    parameters {
-        booleanParam(name: 'Deploy', defaultValue: false,)
-    }
+    // parameters {
+    //     booleanParam(name: 'Deploy', defaultValue: false,)
+    // }
 
     stages {
         stage('clone') {
@@ -72,6 +72,23 @@ pipeline {
                         type: 'zip']
                     ]
                 )
+            }
+        }
+
+        stage('Deploy') {
+            // when {
+            //     expression{
+            //         params.Deploy == 'true'
+            //     }
+            // }
+            steps {
+                script {
+                        def params = [
+                            string(name: 'version', value: "$packageversion"),
+                            string(name: 'environment', value: "dev")
+                        ]
+                        build job: "catalogue-deploy", wait: true, parameters: params
+                    }
             }
         }
         
