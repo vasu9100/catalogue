@@ -15,7 +15,11 @@ pipeline {
 
     environment {
         packageversion = '' 
-        nexusURL = '172.31.20.146:8081'
+        nexusURL = '18.205.2.160:8081'
+    }
+
+    parameters {
+        booleanParam(name: 'Deploy', defaultValue: false,)
     }
 
     stages {
@@ -70,5 +74,23 @@ pipeline {
                 )
             }
         }
+
+        stage('Deploy') {
+            when {
+                expression{
+                    params.Deploy == 'true'
+                }
+            }
+            steps {
+                script {
+                        def params = [
+                            string(name: 'version', value: "$packageversion"),
+                            string(name: 'environment', value: "dev")
+                        ]
+                        build job: "catalogue-deploy", wait: true, parameters: params
+                    }
+            }
+        }
     }
+
 }
