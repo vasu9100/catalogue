@@ -44,6 +44,14 @@ pipeline {
     
         }
 
+        stage('scanning') {
+            steps {
+                sh """
+                    sonar-scanner
+                """
+            }
+        }
+
         stage('zipping') {
             steps {
                 sh """
