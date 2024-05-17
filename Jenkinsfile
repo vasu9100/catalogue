@@ -18,9 +18,9 @@ pipeline {
         nexusURL = '3.209.11.212:8081'
     }
 
-    parameters {
-        booleanParam(name: 'Deploy', defaultValue: false, description: 'Do you want to deploy?')
-    }
+    // parameters {
+    //     booleanParam(name: 'Deploy', defaultValue: false, description: 'Do you want to deploy?')
+    // }
 
     // parameters {
     //     booleanParam(name: 'Deploy', defaultValue: false,)
@@ -88,11 +88,11 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {
-                expression{
-                    params.Deploy == 'false'
-                }
-            }
+            // when {
+            //     expression{
+            //         params.Deploy == 'false'
+            //     }
+            // }
             steps {
                 script {
                         def params = [
