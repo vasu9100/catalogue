@@ -90,7 +90,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression{
-                    params.Deploy == 'true'
+                    params.Deploy == 'false'
                 }
             }
             steps {
@@ -103,6 +103,8 @@ pipeline {
                     }
             }
         }
+
+        
         
     }
 
